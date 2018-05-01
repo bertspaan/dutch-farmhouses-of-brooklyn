@@ -1,0 +1,31 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {% for location in site.locations %}
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": {{ location.coordinates | jsonify }}
+      },
+      "properties": {
+        "type": "location",
+        "id": {{ location.id | replace: "/locations/", "" | jsonify }},
+        "title": {{ location.title | jsonify }},
+        "url": {{ location.url | absolute_url | jsonify }},
+        "address": {{ location.address | jsonify }},
+        "photos": {{ location.photos | jsonify }},
+        "maps": {{ location.maps | jsonify }},
+        "audio": {{ location.audio | jsonify }}
+      }
+    },
+    {% endfor %}
+    {
+      "type": "Feature",
+      "geometry": {{ site.data.route | jsonify }},
+      "properties": {
+        "type": "route"
+      }
+    }
+  ]
+}

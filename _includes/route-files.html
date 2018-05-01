@@ -1,0 +1,12 @@
+{% assign name = site.title | slugify %}
+<ul>
+  <li>
+    <a href="{{ site.baseurl }}/route/route.geojson" download="{{ name }}.geojson">GeoJSON</a>
+  </li>
+  <li>
+    <a href="{{ site.baseurl }}/route/route.gpx" download="{{ name }}.gpx">GPX</a>
+  </li>
+  <li>
+    <a href="{{ site.baseurl }}/route/route.kml"download="{{ name }}.kml">KML</a>
+  </li>
+</ul>

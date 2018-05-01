@@ -1,0 +1,13 @@
+{% assign sorted_locations = site.locations | sort: 'order' %}
+<ol>
+{% for location in sorted_locations %}
+
+  <li>
+  {% unless page.url == location.url %}
+    <a href="{{ site.baseurl }}{{ location.url }}">{{ location.title }}</a>
+  {% else %}
+    {{ location.title }}
+  {% endunless %}
+  </li>
+{% endfor %}
+</ol>

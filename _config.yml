@@ -1,0 +1,27 @@
+title: Dutch Farmhouses of Brooklyn — by Bicycle!
+baseurl:
+
+parameters:
+  max_distance: 1000
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+  - scope:
+      path: ""
+      type: locations
+    values:
+      layout: location
+
+  - scope:
+      path: "route"
+    values:
+      layout:
+
+collections:
+  locations:
+    output: true
+    permalink: /locations/:name/
