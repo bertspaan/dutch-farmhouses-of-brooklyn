@@ -11,6 +11,7 @@
       "properties": {
         "type": "location",
         "id": {{ location.id | replace: "/locations/", "" | jsonify }},
+        "order": {{ location.order }},
         "title": {{ location.title | jsonify }},
         "url": {{ location.url | absolute_url | jsonify }},
         "address": {{ location.address | jsonify }},

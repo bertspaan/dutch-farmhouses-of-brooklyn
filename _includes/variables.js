@@ -9,3 +9,7 @@ var ROUTE_END = [
   {{ site.data.route.coordinates | last | last }},
   {{ site.data.route.coordinates | last | first }}
 ]
+
+var MAX_DISTANCE = {{ site.parameters.max_distance }}
+
+var STYLE = {{ site.style | jsonify }}

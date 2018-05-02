@@ -26,48 +26,72 @@ function computeNearest (locations, point) {
   return nearest
 }
 
+function hideFooter (element) {
+  element.style.display = 'none'
+}
+
+function showFooter (element) {
+  element.style.display = 'inherit'
+}
+
 var lastNearestId
 function setNearest (nearest) {
-  if (lastNearestId === nearest.id) {
-    return
-  }
+  // if (lastNearestId === nearest.id) {
+    // return
+  // }
 
-  var footer = document.querySelector('footer')
-  footer.innerHTML = createLink(nearest.url, nearest.title)
+  var zoom = map.getZoom()
+
+  if (nearest.distance >= MAX_DISTANCE) {
+    showFooter(document.getElementById('footer-too-far'))
+
+    var nearestFooters = document.querySelectorAll('.footer-nearest')
+    for (var index = 0; index < nearestFooters.length; index++) {
+      hideFooter(nearestFooters[index])
+    }
+  } else {
+    hideFooter(document.getElementById('footer-too-far'))
+
+    var nearestFooters = document.querySelectorAll('.footer-nearest')
+    for (var index = 0; index < nearestFooters.length; index++) {
+      var id = nearestFooters[index].getAttribute('data-id')
+      if (id === nearest.id && zoom >= 15) {
+        showFooter(nearestFooters[index])
+      } else {
+        hideFooter(nearestFooters[index])
+      }
+    }
+  }
 
   lastNearestId = nearest.id
 }
 
-function localStorageSetPosition (zoom, center) {
+function localStorageSet (data) {
   try {
-    localStorage.setItem('mapPosition', JSON.stringify({
-      zoom: zoom,
-      center: center
-    }))
+    localStorage.setItem('data', JSON.stringify(data))
   } catch (err) {
-    console.error(err)
+    // console.error(err)
   }
 }
 
-function localStorageGetPosition () {
+function localStorageGet () {
   try {
-    var position = JSON.parse(localStorage.getItem('mapPosition'))
-    return {
-      zoom: position.zoom,
-      center: L.latLng(position.center)
-    }
+    return JSON.parse(localStorage.getItem('data'))
   } catch (err) {
-    console.error(err)
+    // console.error(err)
   }
 }
 
 var routeStyle = {
-  color: '#ff7800',
-  weight: 8,
+  color: STYLE['secondary-color'],
+  weight: 6,
   opacity: 0.65
 }
 
-var storedPosition = localStorageGetPosition()
+var storedData = localStorageGet()
+var storedPosition = storedData && storedData.position
+var storedLocate = storedData && storedData.locate
+
 var mapCenter = (storedPosition && storedPosition.center) || ROUTE_START
 var mapZoom = (storedPosition && storedPosition.zoom) || 16
 
@@ -89,12 +113,26 @@ var locateControl = L.control.locate({
   drawCircle: false
 }).addTo(map)
 
-map.on('moveend', function () {
+function mapUpdated () {
   var center = map.getCenter()
   var nearest = computeNearest(locations, center)
   setNearest(nearest)
-  localStorageSetPosition(map.getZoom(), center)
-})
+
+  var storedData = {
+    position: {
+      zoom: map.getZoom(),
+      center: center
+    },
+    locate: {
+      active: locateControl._active,
+      following: locateControl._isFollowing()
+    }
+  }
+
+  localStorageSet(storedData)
+}
+
+map.on('moveend', mapUpdated)
 
 // function getTileUrl (mapId) {
 //   return 'http://maps.nypl.org/warper/maps/tile/' + mapId + '/{z}/{x}/{y}.png'
@@ -151,17 +189,25 @@ function onEachFeature(feature, layer) {
 
 var routeLayer = L.geoJSON(ROUTE_GEOJSON, {
   style: routeStyle,
-  onEachFeature: onEachFeature
+  onEachFeature: onEachFeature,
+  pointToLayer: function (feature, latlng) {
+    return new L.Marker(latlng, {
+      icon:	new L.NumberedDivIcon({
+        number: feature.properties.order
+      })
+    })
+}
 }).addTo(map)
 
 var overlayMaps = {
   'Walking tour route': routeLayer
 }
 
-function stopHet () {
-  // stop de geolocate!
-  // centreer kaart op alle geojson
-}
+document.getElementById('footer-show-route-button').addEventListener('click', function () {
+  locateControl.stop()
+  map.fitBounds(routeLayer.getBounds())
+})
+
 
 // L.control.layers(mapwarperLayersByTitle, overlayMaps).addTo(map)
 
@@ -180,7 +226,10 @@ function stopHet () {
 //
 // updateOpacity()
 
-// locateControl.start()
+var storedLocate = storedData && storedData.locate
 
-// locateControl._active
-// locateControl._isFollowing()
+if (storedLocate && storedLocate.active) {
+  locateControl.start()
+}
+
+mapUpdated()
