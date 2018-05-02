@@ -105,6 +105,7 @@ var map = L.map('map', {
 var baseMapTileUrl = 'https://api.mapbox.com/styles/v1/nypllabs/cj2gmix25005o2rpapartqm07/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibnlwbGxhYnMiLCJhIjoiSFVmbFM0YyJ9.sl0CRaO71he1XMf_362FZQ'
 var baseLayer = L.tileLayer(baseMapTileUrl, {
   attribution: '&copy; Mapbox, &copy; OpenStreetMap',
+  minZoom: 12,
   maxZoom: 20,
   maxNativeZoom: 19
 }).addTo(map)

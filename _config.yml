@@ -6,24 +6,19 @@ parameters:
 
 style:
   primary-color: "#de5f1b"
-  secondary-color: "#256469"
+  secondary-color: "#346166"
 
 defaults:
   - scope:
       path: ""
     values:
-      layout: home
+      layout:
 
   - scope:
       path: ""
       type: locations
     values:
       layout: location
-
-  - scope:
-      path: "route"
-    values:
-      layout:
 
 collections:
   locations:
