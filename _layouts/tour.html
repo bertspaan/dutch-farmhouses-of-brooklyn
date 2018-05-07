@@ -9,7 +9,7 @@
     {% for location in site.locations %}
     <div class="footer-nearest" data-id="{{ location.id | replace: "/locations/", "" }}">
       <span>Nearest location:</span>
-      <a class="button" href="{{ location.url }}">{{ location.title }}</a>
+      <a class="button" href="{{ site.baseurl }}{{ location.url }}">{{ location.title }}</a>
     </div>
     {% endfor %}
   </div>
