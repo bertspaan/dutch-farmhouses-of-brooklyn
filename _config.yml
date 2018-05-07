@@ -1,5 +1,5 @@
 title: Dutch Farmhouses of Brooklyn — by Bicycle!
-baseurl:
+baseurl: /dutch-farmhouses-of-brooklyn
 
 parameters:
   max_distance: 8000 # meters
