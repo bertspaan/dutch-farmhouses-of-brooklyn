@@ -184,7 +184,8 @@ map.on('moveend', mapUpdated)
 
 function onEachFeature(feature, layer) {
   if (feature.properties && feature.properties.type === 'location') {
-    layer.bindPopup(createLink(feature.properties.url, feature.properties.title))
+    var img = '<img src="' + BASE_URL + '/images/locations/' + feature.properties.id + '.png" />'
+    layer.bindPopup(img + createLink(feature.properties.url, feature.properties.title))
   }
 }
 
@@ -201,7 +202,7 @@ var routeLayer = L.geoJSON(ROUTE_GEOJSON, {
 }).addTo(map)
 
 var overlayMaps = {
-  'Walking tour route': routeLayer
+  'Route': routeLayer
 }
 
 document.getElementById('footer-show-route-button').addEventListener('click', function () {
@@ -209,6 +210,16 @@ document.getElementById('footer-show-route-button').addEventListener('click', fu
   map.fitBounds(routeLayer.getBounds())
 })
 
+function createIcon (imageUrl, width, height) {
+  return L.icon({
+    iconUrl: BASE_URL + '/images/' + imageUrl,
+    iconSize: [width, height],
+    iconAnchor: [width / 2, height + 5]
+  })
+}
+
+L.marker(ROUTE_START, {icon: createIcon('start.png', 50, 33)}).addTo(map)
+L.marker(ROUTE_FINISH, {icon: createIcon('finish.png', 50, 30)}).addTo(map)
 
 // L.control.layers(mapwarperLayersByTitle, overlayMaps).addTo(map)
 
