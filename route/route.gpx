@@ -9,7 +9,7 @@
   <trk>
     <name>Route</name>
     <trkseg>
-      {% for coordinate in site.data.route.coordinates %}
+      {% for coordinate in site.data.route.features[0].geometry.coordinates %}
         <trkpt lat="{{ coordinate[1] }}" lon="{{ coordinate[0] }}">
         </trkpt>
       {% endfor %}

@@ -8,8 +8,8 @@ var locations = ROUTE_GEOJSON.features
     })
   })
 
-function createLink (url, text) {
-  return '<a href="' +url + '">' + text + '</a>'
+function createPopupLink (url, text) {
+  return '<a class="button" href="' + url + '">' + text + '</a>'
 }
 
 function computeNearest (locations, point) {
@@ -85,7 +85,9 @@ function localStorageGet () {
 var routeStyle = {
   color: STYLE['secondary-color'],
   weight: 6,
-  opacity: 0.65
+  opacity: 0.7,
+  dashArray: '10, 10',
+  lineCap: 'square'
 }
 
 var storedData = localStorageGet()
@@ -98,7 +100,7 @@ var mapZoom = (storedPosition && storedPosition.zoom) || 16
 var map = L.map('map', {
   center: mapCenter,
   zoom: mapZoom,
-  maxZoom: 20,
+  maxZoom: 19,
   attributionControl: false
 })
 
@@ -135,57 +137,10 @@ function mapUpdated () {
 
 map.on('moveend', mapUpdated)
 
-// function getTileUrl (mapId) {
-//   return 'http://maps.nypl.org/warper/maps/tile/' + mapId + '/{z}/{x}/{y}.png'
-// }
-
-// var mapwarperMaps = [
-//   {
-//     title: 'Plate C - Farm Line Atlas, Vol. 5 (1880)',
-//     mapId: 11859
-//   },
-//   {
-//     title: 'Plate 6 - Maps of the City of Brooklyn (1855)',
-//     mapId: 7238
-//   },
-//   {
-//     title: 'Plate 15 - Maps of the City of Brooklyn (1855)',
-//     mapId: 7247
-//   },
-//   {
-//     title: 'Plate 7 - Maps of the City of Brooklyn (1855)',
-//     mapId: 7239
-//   },
-//   {
-//     title: 'Plate E - Farm Line Atlas, Vol. 5 (1880)',
-//     mapId: 11861
-//   },
-//   {
-//     title: 'Plate 31 - Brooklyn Atlas 66, Vol. 2 (1887)',
-//     mapId: 19213
-//   }
-// ]
-
-// var mapwarperLayersByTitle = {}
-// var mapwarperLayers = mapwarperMaps.map(function (mapwarperMap, index) {
-//   var layer = L.tileLayer(getTileUrl(mapwarperMap.mapId), {
-//     maxZoom: 20,
-//     maxNativeZoom: 19
-//   })
-//
-//   if (index === 0) {
-//     layer.addTo(map)
-//   }
-//
-//   mapwarperLayersByTitle[mapwarperMap.title] = layer
-//
-//   return layer
-// })
-
 function onEachFeature(feature, layer) {
   if (feature.properties && feature.properties.type === 'location') {
     var img = '<img src="' + BASE_URL + '/images/locations/' + feature.properties.id + '.png" />'
-    layer.bindPopup(img + createLink(feature.properties.url, feature.properties.title))
+    layer.bindPopup(img + createPopupLink(feature.properties.url, feature.properties.title))
   }
 }
 
@@ -200,10 +155,6 @@ var routeLayer = L.geoJSON(ROUTE_GEOJSON, {
     })
 }
 }).addTo(map)
-
-var overlayMaps = {
-  'Route': routeLayer
-}
 
 document.getElementById('footer-show-route-button').addEventListener('click', function () {
   locateControl.stop()
@@ -220,23 +171,6 @@ function createIcon (imageUrl, width, height) {
 
 L.marker(ROUTE_START, {icon: createIcon('start.png', 50, 33)}).addTo(map)
 L.marker(ROUTE_FINISH, {icon: createIcon('finish.png', 50, 30)}).addTo(map)
-
-// L.control.layers(mapwarperLayersByTitle, overlayMaps).addTo(map)
-
-// var slider = document.getElementById('slider')
-//
-// function updateOpacity() {
-//   var opacity = slider.value / 100
-//   mapwarperLayers.forEach(function (layer) {
-//     layer.setOpacity(opacity)
-//   })
-// }
-//
-// slider.addEventListener('input', updateOpacity)
-// // In IE<=11, input event does not work
-// slider.addEventListener('change', updateOpacity)
-//
-// updateOpacity()
 
 var storedLocate = storedData && storedData.locate
 

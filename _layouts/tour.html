@@ -7,7 +7,7 @@
       <button id="footer-show-route-button">Show route on map</button>
     </div>
     {% for location in site.locations %}
-    <div class="footer-nearest" data-id="{{ location.id | replace: "/locations/", "" }}">
+    <div class="leaflet-box footer-nearest" data-id="{{ location.id | replace: "/locations/", "" }}">
       <span>Nearest location:</span>
       <a class="button" href="{{ site.baseurl }}{{ location.url }}">{{ location.title }}</a>
     </div>

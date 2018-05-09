@@ -1,5 +1,6 @@
 title: Dutch Farmhouses of Brooklyn — by Bicycle!
 baseurl: /dutch-farmhouses-of-brooklyn
+assetsurl: https://bertspaan.nl/dutch-farmhouses-of-brooklyn-assets/
 
 parameters:
   max_distance: 8000 # meters

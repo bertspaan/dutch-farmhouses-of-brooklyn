@@ -11,6 +11,7 @@ body {
   height: 100%;
   position: absolute;
   background-color: #fefefe;
+  line-height: 1.58;
 }
 
 body, input, button {
@@ -41,11 +42,52 @@ header nav img {
 }
 
 section {
-  padding: 0.5em;
+  padding: 15px;
+}
+
+figure {
+  margin: 2em 0;
+  padding: 0 2em;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+figure img {
+  width: 100%;
+}
+
+figcaption {
+  text-align: center;
+  opacity: 70%;
+  font-size: 90%;
 }
 
 audio {
   width: 100%;
+}
+
+dl {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+dt {
+  padding-right: 1em;
+}
+
+dt:after {
+  content: ":";
+}
+
+dt, dd {
+  box-sizing: border-box;
+  display: inline;
+  width: 50%;
+  margin: 0;
+}
+
+dd {
+  align-self: flex-end;
 }
 
 .centered-button {
@@ -88,10 +130,15 @@ button, .button {
 
 .location-header > * {
   display: inline;
+  margin-right: 5px;
+}
+
+.location-header .button {
+  margin: 0;
 }
 
 .location-header h3 {
-  color: #777;
+  opacity: 0.5;
 }
 
 #map-container {
@@ -101,20 +148,27 @@ button, .button {
 }
 
 #map {
-  position: absolute;
   width: 100%;
+}
+
+.full-map {
+  position: absolute;
   height: 100%;
+}
+
+.small-map {
+  height: 400px;
 }
 
 #map-footer {
   width: 100%;
   position: absolute;
   bottom: 0;
+  padding: 10px;
 }
 
 #map-footer , #map-footer > div {
   box-sizing: border-box;
-  padding: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -123,6 +177,7 @@ button, .button {
 
 #map-footer > div {
   display: none;
+  padding: 5px;
   background-color: #fefefe;
   position: relative;
   z-index: 999;

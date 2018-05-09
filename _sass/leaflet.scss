@@ -1,5 +1,8 @@
 .leaflet-popup-content {
 	width: 200px;
+	margin: 10px;
+	font-size: 16px;
+	text-align: center;
 }
 
 .leaflet-popup-content img {
@@ -14,7 +17,8 @@
 .leaflet-marker-icon .number {
   color: white;
 	position: relative;
-	top: -30px;
+	font-size: 16px;
+	top: -32px;
 	width: 30px;
 	text-align: center;
 }

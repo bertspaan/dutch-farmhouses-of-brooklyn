@@ -7,11 +7,7 @@ L.NumberedDivIcon = L.Icon.extend({
     shadowUrl: null,
     iconSize: new L.Point(30, 30),
 		iconAnchor: new L.Point(15, 15),
-		popupAnchor: new L.Point(15, 15),
-		/*
-		iconAnchor: (Point)
-		popupAnchor: (Point)
-		*/
+		popupAnchor: new L.Point(0, -18),
 		className: 'leaflet-div-icon'
 	},
 

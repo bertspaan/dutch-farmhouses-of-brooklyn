@@ -2,27 +2,36 @@
 <section>
   <div class="location-header">
     <h2>{{ page.title }}</h2>
-    <h3>{{ page.address }}</h3>
+    <h3><a href="https://maps.google.com/?q={{ page.coordinates[1] }},{{ page.coordinates[0] }}">{{ page.address }}</a></h3>
     <a class="button no-wrap" href="{{ site.baseurl }}/tour/">Back to tour</a>
   </div>
 
+  {% if page.fields %}
+  <dl>
+    {% for field in page.fields %}
+    <dt>{{ field[0] }}</dt>
+    <dd>{{ field[1] }}</dd>
+    {% endfor %}
+  </dl>
+  {% endif %}
+
   {{ content }}
 
-  <p>
-    TODO: show maps!
-  </p>
-
+  {% if page.audio %}
   <audio controls>
-    <source src="https://archive.org/download/testmp3testfile/mpthreetest.ogg" type="audio/ogg">
-    <source src="https://archive.org/download/testmp3testfile/mpthreetest.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
+    <source src="{{ page.audio }}" >
+    Your browser does not support the audio element.
   </audio>
+  {% endif %}
+
+  {% if page.maps %}
+  {% include map.html maps=page.maps center=page.coordinates %}
+  {% endif %}
 
   <p>
     Go to other locations:
   </p>
   {% include menu.html %}
-
 
 </section>
 {% include footer.html %}

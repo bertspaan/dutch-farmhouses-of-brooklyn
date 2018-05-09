@@ -1,0 +1,81 @@
+<div id="map-container">
+  <div id="map" class="small-map">
+  </div>
+  <div id="map-footer">
+    <div class="leaflet-box" id="footer-too-far" style="display: inherit;">
+      <div id="slider-container">
+        <label for="opacity-slider">Opacity:</label>
+        <input id="opacity-slider" type="range" min="1" max="100" step="1" value="100">
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  var tileMaps = {{ include.maps | jsonify }}
+  var mapCenter = {{ include.center | jsonify }}.reverse()
+
+  var map = L.map('map', {
+    center: mapCenter,
+    scrollWheelZoom: false,
+    zoom: 16,
+    maxZoom: 19,
+    attributionControl: false
+  })
+
+  var baseMapTileUrl = 'https://api.mapbox.com/styles/v1/nypllabs/cj2gmix25005o2rpapartqm07/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibnlwbGxhYnMiLCJhIjoiSFVmbFM0YyJ9.sl0CRaO71he1XMf_362FZQ'
+  var baseLayer = L.tileLayer(baseMapTileUrl, {
+    attribution: '&copy; Mapbox, &copy; OpenStreetMap',
+    minZoom: 12,
+    maxZoom: 20,
+    maxNativeZoom: 19
+  }).addTo(map)
+
+  var tileLayersByTitle = {}
+  var tileLayers = tileMaps.map(function (tileMap, index) {
+    var layer = L.tileLayer(tileMap.tileurl, {
+      maxZoom: 20,
+      maxNativeZoom: 19
+    })
+
+    if (index === 0) {
+      layer.addTo(map)
+    }
+
+    tileLayersByTitle[tileMap.title] = layer
+
+    return layer
+  })
+
+  // var routeLayer = L.geoJSON(ROUTE_GEOJSON, {
+  //   style: routeStyle,
+  //   pointToLayer: function (feature, latlng) {
+  //     return new L.Marker(latlng, {
+  //       icon:	new L.NumberedDivIcon({
+  //         number: feature.properties.order
+  //       })
+  //     })
+  // }
+  // }).addTo(map)
+  //
+  // var overlayMaps = {
+  //   'Route': routeLayer
+  // }
+
+  L.control.layers(tileLayersByTitle).addTo(map)
+  // L.control.layers(tileLayersByTitle, overlayMaps).addTo(map)
+
+  var slider = document.getElementById('opacity-slider')
+
+  function updateOpacity () {
+    var opacity = slider.value / 100
+    tileLayers.forEach(function (layer) {
+      layer.setOpacity(opacity)
+    })
+  }
+
+  slider.addEventListener('input', updateOpacity)
+  // In IE<=11, input event does not work
+  slider.addEventListener('change', updateOpacity)
+
+  updateOpacity()
+</script>

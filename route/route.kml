@@ -11,13 +11,13 @@
       <visibility>1</visibility>
       <open>0</open>
       <Placemark>
-        <name><![CDATA[route]]></name>
+        <name><![CDATA[Route]]></name>
         <MultiGeometry>
           <LineString>
             <tessellate>1</tessellate>
             <altitudeMode>clampToGround</altitudeMode>
             <coordinates>
-              {% for coordinate in site.data.route.coordinates %}
+              {% for coordinate in site.data.route.features[0].geometry.coordinates %}
                {{ coordinate[0] }},{{ coordinate[1] }}
               {% endfor %}
             </coordinates>

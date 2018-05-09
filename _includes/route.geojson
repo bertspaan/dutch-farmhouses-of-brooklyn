@@ -23,7 +23,7 @@
     {% endfor %}
     {
       "type": "Feature",
-      "geometry": {{ site.data.route | jsonify }},
+      "geometry": {{ site.data.route.features[0].geometry | jsonify }},
       "properties": {
         "type": "route"
       }
