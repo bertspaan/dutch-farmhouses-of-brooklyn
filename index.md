@@ -35,4 +35,6 @@ The tour is supported as part of the [Dutch Culture USA program](http://www.dutc
   <dd><a href="https://bertspaan.nl">Bert Spaan</a> &amp; <a href="https://twitter.com/jeremylechtzin">Jeremy Lechtzin</a></dd>
 </dl>
 
+You can view the source code of this website [on GitHub](https://github.com/bertspaan/dutch-farmhouses-of-brooklyn).
+
 {% include route-files.html %}
