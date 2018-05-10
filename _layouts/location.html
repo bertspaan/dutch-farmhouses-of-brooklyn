@@ -1,6 +1,9 @@
 {% include header.html title=page.title %}
 <section>
   <div class="location-header">
+    <div class="number-container">
+      <div class="number-circle">{{ page.order }}</div>
+    </div>
     <h2>{{ page.title }}</h2>
     <h3><a href="https://maps.google.com/?q={{ page.coordinates[1] }},{{ page.coordinates[0] }}">{{ page.address }}</a></h3>
     <a class="button no-wrap" href="{{ site.baseurl }}/tour/">Back to tour</a>

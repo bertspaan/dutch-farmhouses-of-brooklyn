@@ -128,9 +128,15 @@ button, .button {
   color: #fefefe;
 }
 
+.location-header {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .location-header > * {
   display: inline;
-  margin-right: 5px;
+  margin: 0 0.5em 0 0;
 }
 
 .location-header .button {
@@ -139,6 +145,20 @@ button, .button {
 
 .location-header h3 {
   opacity: 0.5;
+}
+
+.number-container {
+  display: inline-block;
+}
+
+.number-circle {
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  border-radius: 50%;
+  text-align: center;
+  background-color: {{ site.style.secondary-color }};
+  color: white;
 }
 
 #map-container {
