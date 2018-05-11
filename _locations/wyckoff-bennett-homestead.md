@@ -1,9 +1,13 @@
 ---
-title: Wyckoff-Bennett House
+title: Wyckoff-Bennett Homestead
 order: 4
 address: 1662 East 22nd Street
-coordinates: [-73.9516403, 40.6110262]
+coordinates: [-73.951222300, 40.610833064]
 maps:
+  - title: Flatlands Beers Atlas of Long Island (1873)
+    tileurl: http://maps.nypl.org/warper/maps/tile/9058/{z}/{x}/{y}.png
+  - title: Atlas of the borough of Brooklyn, City of New York (1906)
+    tileurl: http://maps.nypl.org/warper/layers/tile/1057/{z}/{x}/{y}.png
 audio:
 fields:
   Constructed: c. 1766

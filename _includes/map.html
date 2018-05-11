@@ -14,11 +14,13 @@
   </div>
 </div>
 <script>
-  var tileMaps = {{ include.maps | jsonify }}
-  var mapCenter = {{ include.center | jsonify }}.reverse()
+  var locationTitle = {{ include.title | jsonify }}
+  var locationNumber = {{ include.number | jsonify }}
+  var locationCoordinates = {{ include.coordinates | jsonify }}
+  var locationMaps = {{ include.maps | jsonify }}
 
   var map = L.map('map', {
-    center: mapCenter,
+    center: [locationCoordinates[1], locationCoordinates[0]],
     scrollWheelZoom: false,
     zoom: 16,
     maxZoom: 19,
@@ -34,8 +36,8 @@
   }).addTo(map)
 
   var tileLayersByTitle = {}
-  var tileLayers = tileMaps.map(function (tileMap, index) {
-    var layer = L.tileLayer(tileMap.tileurl, {
+  var tileLayers = locationMaps.map(function (locationMap, index) {
+    var layer = L.tileLayer(locationMap.tileurl, {
       maxZoom: 20,
       maxNativeZoom: 19
     })
@@ -44,28 +46,41 @@
       layer.addTo(map)
     }
 
-    tileLayersByTitle[tileMap.title] = layer
+    tileLayersByTitle[locationMap.title] = layer
 
     return layer
   })
 
-  // var routeLayer = L.geoJSON(ROUTE_GEOJSON, {
-  //   style: routeStyle,
-  //   pointToLayer: function (feature, latlng) {
-  //     return new L.Marker(latlng, {
-  //       icon:	new L.NumberedDivIcon({
-  //         number: feature.properties.order
-  //       })
-  //     })
-  // }
-  // }).addTo(map)
-  //
-  // var overlayMaps = {
-  //   'Route': routeLayer
-  // }
+  var locationGeoJson = {
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        properties: {},
+        geometry: {
+          type: 'Point',
+          coordinates: locationCoordinates
+        }
+      }
+    ]
+  }
 
-  L.control.layers(tileLayersByTitle).addTo(map)
-  // L.control.layers(tileLayersByTitle, overlayMaps).addTo(map)
+  var locationLayer = L.geoJSON(locationGeoJson, {
+    pointToLayer: function (feature, latlng) {
+      return new L.Marker(latlng, {
+        icon:	new L.NumberedDivIcon({
+          number: locationNumber
+        })
+      })
+  }
+  }).addTo(map)
+
+
+  var overlayMaps = {}
+  overlayMaps[locationTitle] = locationLayer
+
+  // L.control.layers(tileLayersByTitle).addTo(map)
+  L.control.layers(tileLayersByTitle, overlayMaps).addTo(map)
 
   var slider = document.getElementById('opacity-slider')
 

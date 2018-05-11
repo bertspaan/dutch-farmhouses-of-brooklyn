@@ -15,7 +15,7 @@ At some sites, the group will briefly tour the surviving farmhouses. At others, 
 {% include start-tour.html %}
 
 {% assign map_src = site.assetsurl | append: "images/route-map-by-lori-richmond-small.jpg" %}
-{% include figure.html src=map_src alt="Route map" caption="Route map, by <a href=\"http://www.loridraws.com/\">Lori Richmond</a>" %}
+{% include figure.html src=map_src alt="Route map" caption="Route map, by <a href=\"http://www.loridraws.com/\">Lori Richmond</a> – <a href=\"http://bertspaan.nl/dutch-farmhouses-of-brooklyn-assets/images/route-map-by-lori-richmond.pdf\">view high-res PDF</a> (14MB)" %}
 
 {% assign six_towns_src = site.assetsurl | append: "images/brooklyn-six-towns-map.jpg" %}
 {% include figure.html src=six_towns_src alt="The Six Towns of Brooklyn" caption="<a href=\"https://bklyn.newspapers.com/clip/19942690/the_brooklyn_daily_eagle/\">Original Six Towns of Kings County from Brooklyn</a>: the five original Dutch and one original English townships – Brooklyn, Flatbush, Flatlands, Bushwick, New Utrecht and Gravesend (1946)" %}
@@ -35,6 +35,6 @@ The tour is supported as part of the [Dutch Culture USA program](http://www.dutc
   <dd><a href="https://bertspaan.nl">Bert Spaan</a> &amp; <a href="https://twitter.com/jeremylechtzin">Jeremy Lechtzin</a></dd>
 </dl>
 
-You can view the source code of this website [on GitHub](https://github.com/bertspaan/dutch-farmhouses-of-brooklyn).
+You can view the source code of this website [on GitHub](https://github.com/bertspaan/dutch-farmhouses-of-brooklyn). It’s easy to adapt the source code and use if for a new bicycle or walking tour.
 
 {% include route-files.html %}

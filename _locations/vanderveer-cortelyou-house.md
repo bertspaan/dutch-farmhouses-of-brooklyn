@@ -4,6 +4,10 @@ order: 5
 address: 412 East 25th Street
 coordinates: [-73.9534738, 40.6402318]
 maps:
+  - title: Flatbush - Atlas of Long Island, New York (1873)
+    tileurl: http://maps.nypl.org/warper/maps/tile/9050/{z}/{x}/{y}.png
+  - title: Robinson's atlas of Kings County, New York (1890)
+    tileurl: http://maps.nypl.org/warper/layers/tile/875/{z}/{x}/{y}.png
 audio:
 fields:
   Constructed: c. 1787 – demolished c. 1950

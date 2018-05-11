@@ -152,6 +152,7 @@ button, .button {
 }
 
 .number-circle {
+  font-weight: bold;
   width: 2em;
   height: 2em;
   line-height: 2em;
@@ -177,7 +178,9 @@ button, .button {
 }
 
 .small-map {
-  height: 400px;
+  height: 600px;
+  max-height: 100vh;
+  margin: 2em 0;
 }
 
 #map-footer {
@@ -203,37 +206,28 @@ button, .button {
   z-index: 999;
 }
 
-/*#slider-container {
-  border-width: 2px;
-  border-color: rgba(0, 0, 0, 0.5);
-  border-style: solid;
-  width: 30%;
+#slider-container {
+  align-items: center;
   box-sizing: border-box;
-  left: calc(50% - 15%);
-  z-index: 9999;
-  position: absolute;
-  bottom: 20px;
-  margin: 0 auto;
-  background-color: white;
-  padding: .5em 1em;
-  border-radius: 20px;
+
+  // margin: 0 auto;
+  // background-color: white;
+  // padding: .5em 1em;
+
   display: flex;
 }
 
-#slider {
+#opacity-slider {
   margin: 0 1em;
   padding: 0;
   width: 100%;
 }
 
-#opacity {
-  text-align: right;
-  width: 4.5em;
-}
+
 
 @media (max-width: 1000px) {
   #slider-container {
-    width: 95%;
-    left: 2.5%;
+    // width: 95%;
+    // left: 2.5%;
   }
-}*/
+}

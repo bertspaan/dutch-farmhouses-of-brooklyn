@@ -1,8 +1,11 @@
+---
+---
+
 // From: https://gist.github.com/comp615/2288108
 
 L.NumberedDivIcon = L.Icon.extend({
 	options: {
-    iconUrl: '../images/marker.svg',
+    iconUrl: '{{ site.baseurl }}/images/marker.svg',
     number: '',
     shadowUrl: null,
     iconSize: new L.Point(30, 30),

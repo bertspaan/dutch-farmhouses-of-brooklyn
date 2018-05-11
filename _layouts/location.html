@@ -28,8 +28,12 @@
   {% endif %}
 
   {% if page.maps %}
-  {% include map.html maps=page.maps center=page.coordinates %}
+  {% include map.html title=page.title maps=page.maps coordinates=page.coordinates number=page.order %}
   {% endif %}
+
+  <div class="centered-button">
+    <a class="button" href="{{ site.baseurl }}/tour/">Back to tour</a>
+  </div>
 
   <p>
     Go to other locations:
