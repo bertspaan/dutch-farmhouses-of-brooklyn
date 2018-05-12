@@ -17,6 +17,9 @@ fields:
   Modern address: 412 East 25th Street (today the site of an apartment building)
 ---
 
+{% assign img1_src = site.assetsurl | append: "images/vanderveer-cortelyou-house-1.jpg" %}
+{% include figure.html src=img1_src alt="Vanderveer-Cortelyou House" caption="Old Dutch Houses of Brooklyn. Maud E. Dilliard, Richard P. Smith Publisher (1945)" %}
+
 - Built on the east side of the highway that ran through Flatbush not very far from the Flatlands boundary line (roughly the intersection of Newkirk and Flatbush Avenues).
 - Built by Captain Vanderveer for his son Garret on farmland in the family since the 1600s.
 - Garret’s daughter Lemma Ann married into the Cortelyou family in 1815 and inherited the house on her father’s death.
