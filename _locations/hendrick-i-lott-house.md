@@ -17,7 +17,7 @@ fields:
   Modern address: 1940 East 36th Street (between Fillmore Avenue & Avenue S)
 ---
 
-{% assign img1_src = site.assetsurl | append: "images/whendrick-i-lott-house-1.jpg" %}
+{% assign img1_src = site.assetsurl | append: "images/hendrick-i-lott-house-1.jpg" %}
 {% include figure.html src=img1_src alt="Hendrick I. Lott House with smokehouse" caption="Hendrick I. Lott House with smokehouse. Brooklyn Public Library. Brooklyn Collection" %}
 
 - Johannes Lott constructed a simple farmhouse not later than 1720, which today is the low portion facing 36th Street.
