@@ -17,7 +17,7 @@ fields:
 ---
 
 {% assign img1_src = site.assetsurl | append: "images/wyckoff-bennett-homestead-1.jpg" %}
-{% include figure.html src=img1_src alt="Wyckoff house. Brooklyn Public Library" caption="Wyckoff house. Brooklyn Public Library. Brooklyn Collection" %}
+{% include figure.html src=img1_src alt="Wyckoff House" caption="Wyckoff house. Brooklyn Public Library. Brooklyn Collection" %}
 
 - Site also includes a barn and yard that’s a remnant of the original 100-acre farm plot.
 - Privately owned and occupied.

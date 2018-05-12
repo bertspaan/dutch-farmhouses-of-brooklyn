@@ -18,7 +18,7 @@ fields:
 ---
 
 {% assign img1_src = site.assetsurl | append: "images/whendrick-i-lott-house-1.jpg" %}
-{% include figure.html src=img1_src alt="Hendrick I. Lott House with smokehouse" caption=" "Hendrick I. Lott House with smokehouse. Brooklyn Public Library. Brooklyn Collection %}
+{% include figure.html src=img1_src alt="Hendrick I. Lott House with smokehouse" caption="Hendrick I. Lott House with smokehouse. Brooklyn Public Library. Brooklyn Collection" %}
 
 - Johannes Lott constructed a simple farmhouse not later than 1720, which today is the low portion facing 36th Street.
 His grandson Hendrick I. Lott built the main house around 1800, incorporating the earlier farmhouse as the new kitchen to the main house.
