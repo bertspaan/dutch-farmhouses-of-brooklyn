@@ -12,6 +12,5 @@ var ROUTE_FINISH = [
   {{ site.data.route.features[0].geometry.coordinates | last | first }}
 ]
 
-var MAX_DISTANCE = {{ site.parameters.max_distance }}
-
+var PARAMETERS = {{ site.parameters | jsonify }}
 var STYLE = {{ site.style | jsonify }}

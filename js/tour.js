@@ -36,13 +36,9 @@ function showFooter (element) {
 
 var lastNearestId
 function setNearest (nearest) {
-  // if (lastNearestId === nearest.id) {
-    // return
-  // }
-
   var zoom = map.getZoom()
 
-  if (nearest.distance >= MAX_DISTANCE) {
+  if (nearest.distance >= PARAMETERS.max_distance) {
     showFooter(document.getElementById('footer-too-far'))
 
     var nearestFooters = document.querySelectorAll('.footer-nearest')
@@ -83,7 +79,7 @@ function localStorageGet () {
 }
 
 var routeStyle = {
-  color: STYLE['secondary-color'],
+  color: STYLE['secondary_color'],
   weight: 6,
   opacity: 0.7,
   dashArray: '10, 10',
@@ -104,9 +100,9 @@ var map = L.map('map', {
   attributionControl: false
 })
 
-var baseMapTileUrl = 'https://api.mapbox.com/styles/v1/nypllabs/cj2gmix25005o2rpapartqm07/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibnlwbGxhYnMiLCJhIjoiSFVmbFM0YyJ9.sl0CRaO71he1XMf_362FZQ'
+var baseMapTileUrl = PARAMETERS.map.tileUrl
 var baseLayer = L.tileLayer(baseMapTileUrl, {
-  attribution: '&copy; Mapbox, &copy; OpenStreetMap',
+  attribution: PARAMETERS.map.attribution,
   minZoom: 12,
   maxZoom: 20,
   maxNativeZoom: 19
@@ -165,12 +161,12 @@ function createIcon (imageUrl, width, height) {
   return L.icon({
     iconUrl: BASE_URL + '/images/' + imageUrl,
     iconSize: [width, height],
-    iconAnchor: [width / 2, height + 5]
+    iconAnchor: [width / 2, height / 2]
   })
 }
 
-L.marker(ROUTE_START, {icon: createIcon('start.png', 50, 33)}).addTo(map)
-L.marker(ROUTE_FINISH, {icon: createIcon('finish.png', 50, 30)}).addTo(map)
+L.marker(ROUTE_START, {icon: createIcon('start.png', 50, 50)}).addTo(map)
+L.marker(ROUTE_FINISH, {icon: createIcon('finish.png', 50, 50)}).addTo(map)
 
 var storedLocate = storedData && storedData.locate
 

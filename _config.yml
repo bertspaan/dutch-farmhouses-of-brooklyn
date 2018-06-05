@@ -4,10 +4,13 @@ assetsurl: https://bertspaan.nl/dutch-farmhouses-of-brooklyn-assets/
 
 parameters:
   max_distance: 8000 # meters
+  map:
+    tileUrl: "https://api.mapbox.com/styles/v1/nypllabs/cj2gmix25005o2rpapartqm07/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibnlwbGxhYnMiLCJhIjoiSFVmbFM0YyJ9.sl0CRaO71he1XMf_362FZQ"
+    attribution: "&copy; Mapbox, &copy; OpenStreetMap"
 
 style:
-  primary-color: "#de5f1b"
-  secondary-color: "#346166"
+  primary_color: "#de5f1b"
+  secondary_color: "#346166"
 
 defaults:
   - scope:

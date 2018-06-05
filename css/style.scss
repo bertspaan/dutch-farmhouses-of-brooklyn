@@ -1,7 +1,6 @@
 ---
 ---
 
-@import 'fonts';
 @import 'leaflet';
 
 body {
@@ -110,7 +109,7 @@ dd {
 }
 
 button, .button {
-  background-color: {{ site.style.primary-color }};
+  background-color: {{ site.style.primary_color }};
   border-radius: 4px;
   padding: 0.3em 0.5em;
   display: inline-block;
@@ -125,7 +124,7 @@ button, .button {
 
 button,
 .button, .button:visited,
-.leaflet-container a.button, .leaflet-container a.button:visited {    
+.leaflet-container a.button, .leaflet-container a.button:visited {
   color: #fefefe;
 }
 
@@ -159,7 +158,7 @@ button,
   line-height: 2em;
   border-radius: 50%;
   text-align: center;
-  background-color: {{ site.style.secondary-color }};
+  background-color: {{ site.style.secondary_color }};
   color: white;
 }
 
