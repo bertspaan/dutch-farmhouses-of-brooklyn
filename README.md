@@ -2,9 +2,7 @@
 
 This repository holds the website of [__Dutch Farmhouses of Brooklyn__](https://bertspaan.nl/dutch-farmhouses-of-brooklyn), a cycling tour of five historical Dutch farmhouses in Brooklyn. This website was used during a [meetup on May 12th, 2018](https://www.meetup.com/historical-data-and-maps-at-nypl/events/249151652/), but it’s also possible to use this website to do the tour later, by yourself (or to just read more about the Dutch history of Brooklyn).
 
-Visit the website:
-
-[__bertspaan.nl/dutch-farmhouses-of-brooklyn__](https://bertspaan.nl/dutch-farmhouses-of-brooklyn)
+Visit the website: [__bertspaan.nl/dutch-farmhouses-of-brooklyn__](https://bertspaan.nl/dutch-farmhouses-of-brooklyn)
 
 See below how to adapt the source code and use this website for your own walking or cycling tour.
 
@@ -36,8 +34,9 @@ assetsurl: https://bertspaan.nl/dutch-farmhouses-of-brooklyn-assets/
 
 parameters:
   max_distance: 8000
-    # Distance in meters the map center
-                     #
+    # If the distance between the map center and the closest
+    # tour site is larger than 8000 meters, the map will show
+    # a recenter map button
   map:
     tileUrl: "https://api.mapbox.com/styles/v1/nypllabs/cj2gmix25005o2rpapartqm07/tiles/256/{z}/{x}/{y}"
       # Leaflet tileUrl used in main route map
